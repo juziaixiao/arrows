@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<script src="js/jquery.js"></script>
+		<script src="js/font.js"></script>
+		<script type="text/javascript " src="js/vue.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css" />
+		<link rel="stylesheet" href="css/common.css" />
+
+		<title>首页</title>
+	</head>
+
+	<style>
+		.containerbox {
+			width: 100%;
+		}
+		
+		.topnav_color {
+			color: #333;
+		}
+		
+		.nav_box {
+			padding: 0.6rem 0;
+			color: #333;
+			font-size: 1.2rem;
+			line-height: 3.5rem;
+			border-bottom: 16px solid #f5f5f5;
+			display: -webkit-box;
+			overflow-x: scroll;
+			-webkit-overflow-scrolling: touch;
+		}
+		
+		.nav_box div {
+			padding: 0 0.7rem;
+			margin-left: 2rem;
+		}
+		
+		.nav_box>div:nth-child(1) {
+			margin-left: 1rem;
+		}
+		
+		.nav_active {
+			background-color: red;
+			border-radius: 10px;
+			color: #fff;
+			background: -webkit-linear-gradient(#ff9e67, #ff7e4e, #fe5738);
+			background: -o-linear-gradient(#ff9e67, #ff7e4e, #fe5738);
+			background: -moz-linear-gradient(#ff9e67, #ff7e4e, #fe5738);
+			background: linear-gradient(to right, #ff9e67, #ff7e4e, #fe5738);
+		}
+		
+		.home_titleimg {
+			width: 93.9%;
+			margin: 1.5rem auto 1.4rem;
+		}
+		
+		.homeitem_bigbox {
+			width: 93.9%;
+			margin: 0 auto;
+			flex-wrap: wrap;
+			flex-direction: row;
+		}
+		
+		.homeitem_box {
+			border: 1px solid #e5e5e5;
+			border-radius: 10px;
+			margin-bottom: 0.8rem;
+			box-shadow: 2px 2px 2px rgb(229, 229, 229);
+			width: 48%;
+		}
+		
+		.homeitem_img {
+			width: 100%;
+			height: 8rem;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+		
+		.homeitem_namebox {
+			padding: 0 0.9rem;
+		}
+		
+		.homeitem_name {
+			/*width:16rem;*/
+			width: 100%;
+			color: #333;
+			font-size: 1.1rem;
+			line-height: 2.8rem;
+		}
+		/*热点推荐*/
+		
+		.hotbox {
+			border-top: 16px solid #f5f5f5;
+		}
+		
+		.huanyihuan {
+			width: 100%;
+			padding: 1rem 0rem;
+			font-size: 1.3rem;
+			color: #CCCCCC;
+			display: flex;
+			justify-content: flex-end;
+		}
+		
+		.huanyihuan>img {
+			width: 2rem;
+			height: 2rem;
+			margin-left: 0.5rem
+		}
+		
+		.zhezao {
+			height: 8rem;
+			position: absolute;
+			top: 0px;
+			width: 100%;
+			border-radius: 10px;
+			background-size: 100% 100%;
+			text-align: center;
+			padding-top: 2.4rem;
+		}
+		.shtyle{
+			margin-right:1rem;
+		}
+	</style>
+
+	<body>
+
+		<div class="containerbox">
+			<!--banner-->
+			<div id="slider" class="mui-slider" style="height:15rem">
+			<div class="mui-slider-group mui-slider-loop" style="height:100%;">
+				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate" style="height:100%;" v-on:click="tzDetail(item.id)">
+					
+						<img v-bind:src="'https://wechat.ltkn7n.cn'+banner_zuihou.banner_img"style="height:100%;"/>
+					
+				</div>
+				<!-- 第一张 -->
+				<div class="mui-slider-item" v-for="item in banner" v-on:click="tzDetail(item.id)" style="height:100%;">
+					
+						<img v-bind:src="'https://wechat.ltkn7n.cn'+item.banner_img" style="height:100%;"/>
+					
+				</div>
+				
+				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate" style="height:100%;" v-on:click="tzDetail(item.id)">
+						<img v-bind:src="'https://wechat.ltkn7n.cn'+banner_kaishi.banner_img"style="height:100%;"/>
+				</div>
+			</div>
+		</div>
+			<!--nav-->
+			<div class=" nav_box">
+				<div v-for="item in nav" v-on:click="navClick(item.id)" v-bind:class="nav_num==item.id?'nav_active':''">{{item.name}}</div>
+			</div>
+			<!--行业推荐-->
+			<div class="p32">
+				<img src="images/title_hytj.png" class="home_titleimg" />
+				<div class="display_flex justify_content_between homeitem_bigbox">
+					<!--for-->
+					<div class="homeitem_box" v-for="item in hantye_tuijian">
+						<div style="height:8rem;position: relative" v-on:click="kaishi(item.id)" >
+							<img v-bind:src="'https://wechat.ltkn7n.cn'+item.recom_img" class="homeitem_img" style="height:100%" v-if="item.status==1" />
+							<div v-bind:id="'gaizi'+item.id" class="zhezao" v-bind:style="{backgroundImage: 'url(https://wechat.ltkn7n.cn' + item.url_img + ')'}" v-if="item.status==2">
+								<center><img src="images/bofang.png" style="width:3rem;height:3rem;" /></center>
+							</div>
+							<video v-bind:id="'video'+item.id" x5-playsinline width="100%" height="100%" v-if="item.status==2">
+								<source v-bind:src="'https://wechat.ltkn7n.cn'+item.url" type="video/mp4" type="video/ogg"></source>
+								<source v-bind:src="'https://wechat.ltkn7n.cn'+item.url" type="video/mp4"> </source>
+							</video>
+						</div>
+
+						<div class="homeitem_namebox"  v-on:click.stop="tzDetail(item.id)">
+							<div class="homeitem_name one_line">{{item.title}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--热点推荐-->
+			<div class="hotbox">
+				<div class="p32">
+					<img src="images/title_rdtj.png" class="home_titleimg" @click="longin()" />
+					<div class="display_flex justify_content_between homeitem_bigbox">
+						<!--for-->
+
+						<div class="homeitem_box" v-for="item in redian_tuijian">
+							<div style="height:8rem;position: relative" v-on:click="kaishis(item.id)">
+								<img v-bind:src="'https://wechat.ltkn7n.cn'+item.banner_img" class="homeitem_img" style="height:100%" v-if="item.status==1" />
+								<div v-bind:id="'gaizi2'+item.id" class="zhezao"  v-bind:style="{backgroundImage: 'url(https://wechat.ltkn7n.cn' + item.url_img + ')'}" v-if="item.status==2">
+									<center><img src="images/bofang.png" style="width:3rem;height:3rem;" /></center>
+								</div>
+								<video v-bind:id="'video2'+item.id" x5-playsinline width="100%" height="100%" v-if="item.status==2">
+									<source v-bind:src="'https://wechat.ltkn7n.cn'+item.url" type="video/mp4" type="video/ogg"></source>
+									<source v-bind:src="'https://wechat.ltkn7n.cn'+item.url" type="video/mp4"> </source>
+								</video>
+							</div>
+
+							<div class="homeitem_namebox"  v-on:click.stop="tzDetail(item.id)">
+								<div class="homeitem_name one_line">{{item.title}}</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!--视频专区-->
+			<div class="videobigbox position_r">
+				<img src="images/title_spzq.png" class="title_spzq" />
+				<div class="position_a videobox">
+					<div class="p22">
+						<div class="video_container">
+							<!--for-->
+							<div class="video_itembox display_flex" v-for="(item,index) in shipin_tuijian" v-if="index<shipin_num">
+
+								<div class="shipin" v-bind:style="'background-image:url(https://wechat.ltkn7n.cn'+item.banner_img+');background-size:100% 100%;'" v-if="item.status==1">
+									<img src="images/bofang.png" class="bofangtupian" />
+								</div>
+								<div style="height:8rem;position: relative;width:40%" v-on:click="kaishiss(item.id)" v-if="item.status==2">
+									<div v-bind:id="'gaizi3'+item.id" class="zhezao shtyle"  v-bind:style="{backgroundImage: 'url(https://wechat.ltkn7n.cn' + item.url_img + ')'}">
+										<center><img src="images/bofang.png" style="width:3rem;height:3rem;" /></center>
+									</div>
+									<video v-bind:id="'video3'+item.id" x5-playsinline height="120%" style="width: 90%;border:none;">
+										<source v-bind:src="'https://wechat.ltkn7n.cn'+item.url" type="video/mp4" type="video/ogg"></source>
+										<source v-bind:src="'https://wechat.ltkn7n.cn'+item.url" type="video/mp4"> </source>
+									</video>
+								</div>
+								<div class="video_rightbox" v-on:click="tzDetail(item.id)" style="margin-left:20px;">
+									<div class="video_text f_24 c_333 two_line">
+										{{item.title}}
+									</div>
+									<div class="display_flex align_items_center home_iconbox">
+										<div class="video_iconbox display_flex align_items_center ">
+											<img src="images/video_icon1.png" class="video_iconimg" />
+											<div class="video_icontext1">关注量</div>
+											<div class="video_icontext2">{{item.count}}</div>
+										</div>
+										<div class="video_iconbox display_flex align_items_center">
+											<img src="images/video_icon2.png" class="video_iconimg" />
+											<div class="video_icontext1">浏览量</div>
+											<div class="video_icontext2">{{item.browse_num}}</div>
+										</div>
+									</div>
+									<div class="display_flex align_items_center home_iconbox" style="margin-top:1.2rem;">
+										<div class="video_iconbox display_flex align_items_center ">
+											<img src="images/video_icon3.png" class="video_iconimg" />
+											<a class="video_icontext1" v-bind:href="'tel:'+item.phone">一键拨号</a>
+
+										</div>
+										<div class="video_iconbox display_flex align_items_center">
+											<img src="images/video_icon4.png" class="video_iconimg" />
+											<a class="video_icontext1" v-bind:href="'http://apis.map.qq.com/uri/v1/marker?marker=coord:'+item.lat+','+item.lng+';&referer=3XGBZ-6QRKF-VONJY-JQ4XI-XFWQ3-UHBTH'">一键导航</a>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="huanyihuans" v-on:click="huanyihuan(3)" v-if="dashuzu.length>5 && shipin_num<dashuzu.length">
+								<span>点击加载更多</span>
+								<img src="images/gengxin.png" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js">
+	</script>
+	
+	<script type="text/javascript">
+		//轮播图
+	
+			var vm = new Vue({
+				el: '.containerbox',
+				data: {
+					nav: [], //行业分类
+					nav_num: "", //用来判断点击行业分类的样式显示与否
+					banner: [], //轮播图
+					redian_tuijian: [], //热点的商家列表
+					hantye_tuijian: [], //行业的商家列表
+					shipin_tuijian: [], //视频的商家列表
+					dashuzu: [], //用来存放所有视频专区的东西点击加载中从中取出数据
+					shipin_num: "5", //用来判断显示多少条商圈专区商家列表
+					banner_zuihou:"",
+					banner_kaishi:""
+				},
+				created: function() {
+					this.login();
+					this.hangye();
+					this.getbanner();
+				},
+				methods: {
+					login: function() {
+						var nonstr = localStorage.getItem("nonstr");
+						if(nonstr) {
+
+						} else {
+							$.ajax({
+								type: "POST",
+								url: "https://wechat.ltkn7n.cn/api/user/newUser",
+								data: {},
+								dataType: "json",
+								async: true,
+								hearder: {
+									"token": 1
+								},
+								success: function(res) {
+									console.log(res)
+									localStorage.setItem("nonstr", res);
+								}
+							});
+							
+						}
+
+					},
+					/***
+					 * 获取行业列表
+					 */
+					hangye: function() {
+						var that = this
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/index/getcategay",
+							data: {},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								that.nav = res;
+								that.nav_num = res[0].id
+							}
+						});
+
+					},
+					/***
+					 * 店铺列表
+					 * 由于一家商铺可能会被后台上传到热点和行业所以根据里面图片的字段来判断是否为某一类商家
+					 * */
+					getbanner: function() {
+						var that = this
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/index/getbanner",
+							data: {},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								console.log(res)
+								that.banner_sz(res)
+								
+							}
+						});
+					},
+					banner_sz:function(res){
+						var that=this
+						that.banner=[];
+						var sz = []
+						var j=0
+						for(var i = 0; i < res.length; i++) {
+							if(res[i].banner_img != "" && res[i].banner_img != null) {
+								sz.push(res[i]);
+								j=i
+							}
+							// alert(i)
+						}
+						that.banner_zuihou=sz[j]
+						that.banner_kaishi=sz[0]
+						that.banner = sz;
+						console.log(sz);
+						this.hangye_sz(res);
+						
+					},
+					hangye_sz:function(res){
+						var that=this
+						var hangye = []
+							for(var i = 0; i < res.length; i++) {
+								if(res[i].recom_img != "" && res[i].recom_img != null) {
+									var url_src = res[i].recom_img.substr(res[i].recom_img.length);
+									console.log(url_src)
+									if(url_src == ".gif" || url_src == "jpeg" || url_src == ".png" || url_src == ".bmp" || url_src == ".jpg") {
+										res[i].status = 1
+									} else if(url_src == ".mp4") {
+										res[i].status = 2
+									}
+									hangye.push(res[i])
+								}
+							}
+							console.log(hangye)
+							that.hantye_tuijian = hangye
+							this.redian_sz(res)
+					},
+					redian_sz:function(res){
+						var that=this
+						var redian = []
+								for(var i = 0; i < res.length; i++) {
+									if(res[i].hotspot_img != "" && res[i].hotspot_img != null) {
+										var url_src = res[i].hotspot_img.substr(res[i].hotspot_img.length - 4);
+										if(url_src == ".gif" || url_src == "jpeg" || url_src == ".png" || url_src == ".bmp" || url_src == ".jpg") {
+											res[i].status = 1
+										} else if(url_src == ".mp4") {
+											res[i].status = 2
+										}
+										redian.push(res[i])
+									}
+								}
+								console.log(redian)
+								that.redian_tuijian = redian
+								this.shangquan_sz(res)
+					},
+					shangquan_sz:function(res){
+						var that=this
+						var shipin = []
+								for(var i = 0; i < res.length; i++) {
+									if(res[i].url != "" && res[i].url != null) {
+										var url_src = res[i].url.substr(res[i].url.length - 4);
+										if(url_src == ".gif" || url_src == "jpeg" || url_src == ".png" || url_src == ".bmp" || url_src == ".jpg") {
+											res[i].status = 1
+										} else if(url_src == ".mp4") {
+											res[i].status = 2
+										}
+										shipin.push(res[i])
+									}
+								}
+								console.log(shipin)
+								that.shipin_tuijian = shipin
+								that.dashuzu = shipin
+					},
+					
+					//点击导航
+					navClick: function(e) {
+						console.log(e);
+						this.nav_num = e;
+						this.getbanners(e);
+					},
+					//跳转到详情
+					tzDetail: function(e) {
+						window.location.href = "detail.html?id=" + e;
+					},
+
+					/***
+					 *点击视频开始按钮开始播放或暂停第一個
+					 * */
+					kaishi: function(e) {
+						var video = document.getElementById("video" + e);
+						var gaizi = document.getElementById("gaizi" + e);
+						if(video.paused) { //如果視頻是沒有播放的就讓他播放
+							video.play();
+							gaizi.style.display = "none";
+							
+						} else { //否則就昂他暫停
+							video.pause();
+							gaizi.style.display = "block";
+						}
+					},
+					/***
+					 *点击视频开始按钮开始播放或暂停第二個
+					 * */
+					kaishis: function(e) {
+						var video = document.getElementById("video2" + e);
+						var gaizi = document.getElementById("gaizi2" + e);
+						if(video.paused) {
+							video.play();
+							gaizi.style.display = "none";
+						} else {
+							video.pause();
+							gaizi.style.display = "block";
+						}
+					},
+					/***
+					 *点击视频开始按钮开始播放或暂停第三個
+					 * */
+					kaishiss: function(e) {
+						var video = document.getElementById("video3" + e);
+						var gaizi = document.getElementById("gaizi3" + e);
+						if(video.paused) {
+							video.play();
+							gaizi.style.display = "none";
+						} else {
+							video.pause();
+							gaizi.style.display = "block";
+						}
+					},
+					/***
+					 * 點擊緩一緩
+					 * */
+					huanyihuan: function(e) {
+						var that = this;
+						if(e == 3) {
+							setTimeout(function() {
+								that.shipin_num = that.shipin_num * 1 + 5;
+							}, 500)
+						}
+					},
+					/***
+					 * 點擊導航切換
+					 * */
+					getbanners: function(e) {
+						var that = this
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/index/getbanner",
+							data: {
+								categay_id: e
+							},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								console.log(res)
+								that.dashuzu = res
+								that.banner_sz(res)
+								// alert(1111)
+								// alert( res);
+								that.shipin_tuijian = shipin
+
+							}
+						});
+					},
+				}
+			})
+			
+		
+	</script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+		window.onload=function(){
+			//获得slider插件对象
+				setTimeout(function(){
+					var gallery = mui('.mui-slider');
+						gallery.slider({
+								interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+						});
+				},500)
+		}
+				
+		
+		
+	</script>
+
+</html>

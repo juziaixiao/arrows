@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<script src="js/jquery.js"></script>
+		<script src="js/font.js"></script>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css" />
+		<title>商家详情</title>
+	</head>
+	<style>
+		.containerbox {
+			width: 100%;
+		}
+		
+		.dtl_realbox {
+			padding-bottom: 1.4rem;
+		}
+		
+		.dtl_topimg {
+			width: 8.1rem;
+			height: 8.1rem;
+			margin: 1.65rem auto 1.5rem;
+			border-radius: 50%;
+		}
+		
+		.dtl_title {
+			font-size: 2rem;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom: 1.6rem;
+		}
+		
+		.dtl_text {
+			line-height: 2.4rem;
+			word-break: break-all;
+		}
+		
+		.dtl_flbox {
+			border-top: 16rpx solid #f5f5f5;
+			padding: 1.3rem 0 0;
+		}
+		
+		.title_bdfl {
+			width: 93.9%;
+			margin: 0 auto;
+			margin-bottom: 1.4rem;
+		}
+		
+		.m_cctv {
+			width: 100%;
+			height: 25rem;
+		}
+		.zhezao {
+			height: 100%;
+			position: absolute;
+			top: 0px;
+			width: 100%;
+			border-radius: 10px;
+			background-size: 100% 100%;
+			text-align: center;
+			padding-top: 80px;
+		}
+		.title_top{
+			/*background-color:rgb(145,217,244);*/
+			 padding: 1rem 0rem;
+			 margin-top:2rem;
+			/* box-shadow: 5px 5px 5px #e5e5e5;*/ 
+			 /*color:#fff;*/
+			 display: flex;
+			 justify-content: center;
+			 border-radius: 30px;
+			 margin-bottom: 10px;
+			 font-size: 2.5rem;
+			 min-width:50%;
+		}
+		.style{
+			margin-right:1rem;"
+		}
+	</style>
+
+	<body>
+		<div class="containerbox">
+			
+				<!--banner-->
+				<!--banner-->
+			<div id="slider" class="mui-slider" style="height:15rem" v-if="shoping.img3!=''||shoping.img3!=null||shoping.img2!=''||shoping.img2!=null||shoping.img1!=''||shoping.img1!=null">
+			<div class="mui-slider-group mui-slider-loop" style="height:100%;">
+				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate" style="height:100%;">
+					
+						<img v-bind:src="'https://wechat.ltkn7n.cn'+banner_img_zuihou"style="height:100%;"/>
+					
+				</div>
+			
+				<!-- 第1张 -->
+				<div class="mui-slider-item" style="height:100%;" v-for="item in banner_img">
+					
+						<img v-bind:src="'https://wechat.ltkn7n.cn'+item" style="height:100%;"/>
+					
+				</div>
+				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate" style="height:100%;" >
+						<img v-bind:src="'https://wechat.ltkn7n.cn'+banner_img_kaishi"style="height:100%;"/>
+				</div>
+			</div>
+		</div>
+			<div class="p32 dtl_realbox">
+				
+				<div class="title_top" style="">
+				<!-- <div class="title_top" style=""> -->
+					
+					{{shoping.title}}
+				</div>
+				<div class="dtl_title c_333" style="font-size:1.3rem;" v-if="guanzhu==2" v-on:click="guanzhus(1)">
+					<u>关注店铺</u>
+				</div>
+				<div class="dtl_title c_333" style="font-size:1.3rem;" v-if="guanzhu==1">
+					<u>已关注店铺</u>
+					<u style="margin-left:3rem" v-on:click="guanzhus(2)">取消关注</u>
+				</div>
+				<div style="height:200px;position: relative;width:100%;z-index: 99999999;" v-on:click="kaishi()"  v-if="shoping.url!=''&&shoping.url!=null">
+					<div id="gaizi" class="zhezao style" v-bind:style="{backgroundImage: 'url(https://wechat.ltkn7n.cn' + shoping.url_img + ')'}">
+						<center><img src="images/bofang.png" style="width:3rem;height:3rem;" /></center>
+					</div>
+					<div class="m_cctv" v-if="shoping.url!=''&&shoping.url!=null" >
+						<video id="video" x5-playsinline width="100%" height="200" v-if="shoping.url!=''&&shoping.url!=null">
+							<source v-bind:src="'https://wechat.ltkn7n.cn'+shoping.url" type="video/ogg">
+							<source v-bind:src="'https://wechat.ltkn7n.cn'+shoping.url" type="video/mp4"> 
+						</video>
+					</div>
+				</div>	
+				<div class="dtl_text f_28 c_333" style="margin-top:20px;">{{shoping.desc}}</div>
+
+			</div>
+			<div class="dtl_flbox">
+				<div class="p32">
+					<img src="images/title_bdfl.png" class="title_bdfl" />
+					<div class="cardbox display_flex" v-for="item in youhuiquan_sz">
+						<div class="position_r cardboxleft">
+							<img src="images/mycard_img1.png" class="cardbox_img " />
+							<div class="position_a cardbox_money"><span>￥</span>{{item.price}}</div>
+						</div>
+
+						<div class="cardboxright">
+							<div class="cardbox_title f_24 c_333 two_line">
+								{{item.title}}
+							</div>
+							<div class="display_flex align_items_center justify_content_between">
+								<div class="cardbox_time f_22 c_333">有效期：{{item.start_time}}-{{item.end_time}}</div>
+								<div class="cardbox_btn cardbox_btn1 f_22" v-on:click="discountcoupon_lq(item.id
+)" v-if="item.usestate==2">
+									立即领取
+								</div>
+								<div class="cardbox_btn cardbox_btn1 f_22" v-if="item.usestate==1">
+									已领取
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		//轮播图SSS
+		mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+		window.onload=function(){
+			//获得slider插件对象
+				setTimeout(function(){
+					var gallery = mui('.mui-slider');
+						gallery.slider({
+								interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+						});
+				},500)
+		}
+		
+		
+			var vm = new Vue({
+				el: '.containerbox',
+				data: {
+					id: "",
+					shoping: [],
+					guanzhu: "1",
+					youhuiquan_sz: [],
+					discountcoupon_sflq:"2",
+					banner_img:"",
+					banner_img_zuihou:"",
+					banner_img_kaishi:""
+				},
+				created: function() {
+					this.url_content();
+					this.gz_shoping(this.id);
+				},
+				methods: {
+					kaishi: function() {
+						var video = document.getElementById("video");
+						var gaizi = document.getElementById("gaizi");
+						
+						if(video.paused) { //如果視頻是沒有播放的就讓他播放
+							video.play();
+							gaizi.style.display = "none";
+							
+						} else { //否則就昂他暫停
+							video.pause();
+							gaizi.style.display = "block";
+						}
+					},
+					fanhui: function() {
+						window.history.go(-1);
+					},
+					url_content: function() {
+						var that = this
+						var url = location.search; //获取url中"?"符后的字串
+						if(url.indexOf("?") != -1) { //判断是否有参数
+							var str = url.substr(1); //从第一个字符开始 因为第0个是?号 获取所有除问号的所有符串
+							strs = str.split("="); //用等号进行分隔 （因为知道只有一个参数 所以直接用等号进分隔 如果有多个参数 要用&号分隔 再用等号进行分隔）
+							console.log(strs[1]); //直接弹出第一个参数 （如果有多个参数 还要进行循环的）
+							that.id = strs[1]
+							that.shoping_xinxi(strs[1])
+							that.shoping_fwl(that.id)
+							that.gz_shoping(that.id)
+							that.youhuiquan(that.id)
+
+
+							
+						}
+					},
+					/***
+					 * 获取商家信息
+					 * */
+					shoping_xinxi: function(e) {
+						console.log(e);
+						var that = this
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/storefront/detail",
+							data: {
+								ad_id: e
+							},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								console.log(res)
+								that.shoping = res
+
+								var sz=[];
+								if(res.img1!=""||res.img1!=null){
+									sz.push(res.img1);
+								}
+								if(res.img2!=""||res.img2!=null){
+									sz.push(res.img2);
+								}
+								if(res.img3!=""||res.img3!=null){
+									sz.push(res.img3);
+								}
+								that.banner_img=sz
+								for(var i=0;i<sz.length;i++){
+									var j=i
+								}
+								that.banner_img_kaishi=sz[0];
+								that.banner_img_zuihou=sz[j];
+								console.log(sz)
+								console.log(that.banner_img_zuihou)
+							},
+							fail: function(res) {
+								console.log(res);
+							}
+						});
+					},
+					
+					shoping_fwl: function(e) {
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/storefront/dobrowse",
+							data: {
+								ad_id: e
+							},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								console.log(res)
+							}
+						});
+					},
+					/***
+					 * 是否关注店铺
+					 * */
+					gz_shoping: function(e) {
+						var that = this
+						var nonstr = localStorage.getItem("nonstr");
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/storefront/userfollow",
+							data: {
+								ad_id: e,
+								user_id:nonstr
+							},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								console.log(res)
+								if(res == 1) {
+									that.guanzhu = 1
+								} else {
+									that.guanzhu = 2
+								}
+							}
+						});
+					},
+					/**
+					 * 获取优惠券
+					 * */
+					youhuiquan: function(e) {
+						var that = this
+						var nonstr = localStorage.getItem("nonstr");
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/storefront/getcoupons",
+							data: {
+								ad_id: e,
+								user_id:nonstr
+							},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								console.log(res)
+								that.youhuiquan_sz = res
+							}
+						});
+					},
+					/***
+					 * 点击关注和取消关注
+					 * */
+					guanzhus: function(e) {
+						var that = this
+						var nonstr = localStorage.getItem("nonstr");
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/storefront/follow",
+							data: {
+								state: e,
+								ad_id: that.id,
+								user_id:nonstr
+							},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								console.log(res)
+								that.gz_shoping(that.id)
+
+							},
+							fail:function(res){
+							}
+						});
+					},
+					/***
+					 * 點擊優惠券領取
+					 */
+					discountcoupon_lq:function(yhq_id){
+						var that = this
+						var nonstr = localStorage.getItem("nonstr");
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/storefront/receive",
+							data: {
+								coupons_id:yhq_id,
+								user_id:nonstr
+							},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								console.log(res)
+								
+								if(res){
+									for(var i=0;i<that.youhuiquan_sz.length;i++){
+										if(yhq_id==that.youhuiquan_sz[i].id){
+											that.youhuiquan_sz[i].usestate=1										}
+									}
+									
+								}else{
+									that.discountcoupon_sflq=2
+								}
+							}
+						});
+					}
+				}
+			})
+		
+	</script>
+</html>

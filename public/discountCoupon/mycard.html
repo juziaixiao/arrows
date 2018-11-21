@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<script src="js/jquery.js"></script>
+		<script src="js/font.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<link rel="stylesheet" href="css/common.css" />
+		<title>我的卡券</title>
+	</head>
+	<style>
+		.tabbox {
+			width: 100%;
+		}
+		
+		.tabmenu {
+			border-bottom: 28px solid #f5f5f5;
+		}
+		
+		.tabmenu li {
+			font-size: 1.3rem;
+			line-height: 4.4rem;
+		}
+		
+		.tabcurrent {
+			color: #e83656;
+			border-bottom: 5px solid #E83656;
+		}
+		
+		.tabothers {
+			color: #333;
+			border: none;
+		}
+	</style>
+
+	<body>
+		<div class="tabbox">
+			<ul class="tabmenu display_flex justify_content_around">
+				<li v-bind:class="top_dh_ys==1?'tabcurrent':'tabothers'" v-on:click="top_dh(1)">未使用（{{coupons_wsy.length}}）</li>
+				<li v-bind:class="top_dh_ys==2?'tabcurrent':'tabothers'" v-on:click="top_dh(2)">使用记录（{{coupons_ysy.length}}）</li>
+				<li v-bind:class="top_dh_ys==3?'tabcurrent':'tabothers'" v-on:click="top_dh(3)">已过期（{{coupons_ygq.length}}）</li>
+			</ul>
+			<div class="p32 tabcontent" v-if="top_dh_ys==1">
+				<div class="cardbox display_flex" v-for="item in coupons_wsy">
+					<div class="position_r cardboxleft">
+						<img src="images/mycard_img1.png" class="cardbox_img " />
+						<div class="position_a cardbox_money"><span>￥</span>{{item.Coupons.price}}</div>
+					</div>
+
+					<div class="cardboxright">
+						<div class="cardbox_title f_24 c_333 two_line">
+							{{item.Coupons.title}}
+						</div>
+						<div class="display_flex align_items_center justify_content_between">
+							<div class="cardbox_time f_22 c_333">有效期：{{item.Coupons.start_time}}-{{item.Coupons.end_time}}</div>
+							<div class="cardbox_btn cardbox_btn1 f_22" v-on:click="employ(item.Coupons.title,item.Coupons.id)">
+								立即使用
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="p32 tabcontent " v-if="top_dh_ys==2">
+				<div class="cardbox display_flex" v-for="item in coupons_ysy">
+					<div class="position_r cardboxleft">
+						<img src="images/mycard_img1.png" class="cardbox_img " />
+						<div class="position_a cardbox_money"><span>￥</span>{{item.Coupons.price}}</div>
+					</div>
+
+					<div class="cardboxright">
+						<div class="cardbox_title f_24 c_333 two_line">
+							{{item.Coupons.title}}
+						</div>
+						<div class="display_flex align_items_center justify_content_between">
+							<div class="cardbox_time f_22 c_333">有效期：{{item.Coupons.start_time}}-{{item.Coupons.end_time}}</div>
+							<div class="cardbox_btn cardbox_btn1 f_22">
+								已使用
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="p32 tabcontent " v-if="top_dh_ys==3">
+				<div class="cardbox display_flex" v-for="item in coupons_ygq">
+					<div class="position_r cardboxleft">
+						<img src="images/mycard_img2.png" class="cardbox_img " />
+						<div class="position_a cardbox_money"><span>￥</span>{{item.Coupons.price}}</div>
+					</div>
+
+					<div class="cardboxright">
+						<div class="cardbox_title f_24 c_333 two_line">
+							{{item.Coupons.title}}
+						</div>
+						<div class="display_flex align_items_center justify_content_between">
+							<div class="cardbox_time f_22 c_333">有效期：{{item.Coupons.start_time}}-{{item.Coupons.end_time}}</div>
+							<div class="cardbox_btn cardbox_btn2 f_22">
+								已过期
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="tanchukuang" style="display: none;">
+				<div class="tck_box">
+					<div class="tck_box_a" style="padding:0rem 2rem;">
+						<div style="margin-bottom:2rem">
+							{{title}}
+						</div>
+						<input type="" name="" id="" value="" placeholder="请联系商家输入优惠码，使用优惠券" v-model="miyao" style="border:solid 1px #cccccc; padding: 1rem;border-radius: 5px;" />
+					</div>
+					<div class="tck_box_b">
+						<div v-on:click="taps()">
+							取消
+						</div>
+						<div v-on:click="queding()">
+							确定
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		//$(".tabmenu li").click(function(){
+		//	$(".tabmenu li").addClass("tabothers");
+		//	$(this).removeClass("tabothers").addClass("tabcurrent");
+		//	var index = $(".tabmenu li").index(this);
+		//	$(".tabcontent").hide();
+		//	$(".tabcontent").eq(index).fadeIn(200);
+		//})
+		var vm = new Vue({
+			el: ".tabbox",
+			data: {
+				top_dh_ys: "1",
+				coupons_wsy: [],
+				coupons_ysy: [],
+				coupons_ygq: [],
+				title: "",
+				miyao: "",
+				yh_id: ''
+			},
+			created: function() {
+				this.xg_status();
+				var that = this
+				setTimeout(function() {
+					that.notused()
+					that.alreadyused()
+					that.expired()
+					that.login()
+				}, 500);
+
+			},
+			methods: {
+				login: function() {
+						var nonstr = localStorage.getItem("nonstr");
+						if(nonstr) {
+
+						} else {
+							$.ajax({
+								type: "POST",
+								url: "https://wechat.ltkn7n.cn/api/user/newUser",
+								data: {},
+								dataType: "json",
+								async: true,
+								hearder: {
+									"token": 1
+								},
+								success: function(res) {
+									console.log(res)
+									localStorage.setItem("nonstr", res);
+								}
+							});
+							
+						}
+
+					},
+				top_dh: function(e) {
+					var that = this
+					this.top_dh_ys = e;
+					if(e == 1) {
+						that.notused()
+						this.xg_status();
+					}
+					if(e == 2) {
+						that.alreadyused()
+					}
+					if(e == 3) {
+						that.expired();
+					}
+				},
+				/***
+				 * 用戶未使用的優惠券
+				 * 
+				 * */
+				notused: function() {
+					var nonstr = localStorage.getItem("nonstr");
+					console.log(nonstr);
+					var that = this
+					$.ajax({
+						type: "POST",
+						url: "https://wechat.ltkn7n.cn/api/Coupons/notused",
+						data: {
+							user_id:nonstr
+						},
+						dataType: "json",
+						async: true,
+						hearder: {},
+						success: function(res) {
+							console.log(res);
+							that.coupons_wsy = res;
+							console.log(that.coupons_wsy)
+						}
+					});
+
+				},
+				/**
+				 * 已使用
+				 */
+				alreadyused: function() {
+					var that = this
+					var nonstr = localStorage.getItem("nonstr");
+					$.ajax({
+						type: "POST",
+						url: "https://wechat.ltkn7n.cn/api/Coupons/alreadyused",
+						data: {
+							user_id:nonstr
+						},
+						dataType: "json",
+						async: true,
+						hearder: {},
+						success: function(res) {
+							console.log(res);
+							that.coupons_ysy = res
+						}
+					});
+				},
+				/****
+				 * 已過期  
+				 */
+				expired: function() {
+					var that = this
+					var nonstr = localStorage.getItem("nonstr");
+					$.ajax({
+						type: "POST",
+						url: "https://wechat.ltkn7n.cn/api/Coupons/expired",
+						data: {
+							user_id:nonstr
+						},
+						dataType: "json",
+						async: true,
+						hearder: {},
+						success: function(res) {
+							console.log(res);
+							that.coupons_ygq = res
+						}
+					});
+				},
+				xg_status: function() {
+					$.ajax({
+						type: "POST",
+						url: "https://wechat.ltkn7n.cn/api/Coupons/couponsstate",
+						data: {},
+						dataType: "json",
+						async: true,
+						hearder: {},
+						success: function(res) {
+							console.log(res);
+							//that.coupons_ygq=res
+						}
+					});
+				},
+				/*
+				 *點擊立即使用 
+				 * */
+				employ: function(title, id) {
+					this.title = title;
+					this.yh_id = id
+					$(".tanchukuang").show(300);
+				},
+
+				taps: function() {
+					$(".tanchukuang").hide(300);
+					this.title = "";
+					this.miyao = "";
+					this.yh_id = '';
+				},
+				/**
+				 * 確定
+				 */
+				queding: function() {
+					var that = this
+					if(that.miyao) {
+						var nonstr = localStorage.getItem("nonstr");
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/Coupons/usecoupons",
+							data: {
+								coupons_id: that.yh_id,
+								pass: that.miyao,
+								user_id:nonstr
+							},
+							dataType: "json",
+							async: true,
+							hearder: {
+								"token": 1
+							},
+							success: function(res) {
+								var that = this
+								console.log(res);
+								if(res == true) {
+									$(".tanchukuang").hide(300)
+									alert('使用成功');
+									location.reload();
+								}
+								if(res == 0) {
+									alert('服务器内部错误，请重试');
+
+								}
+								if(res == 2) {
+									alert('使用失败，服务器内部错误');
+
+								}
+								if(res == 3) {
+									alert('服务器内部错误，请重试');
+
+								}
+								if(res == 4) {
+									alert('密钥输入错误');
+
+								}
+							}
+						});
+					} else {
+						alert('请输入密钥')
+					}
+
+				}
+			}
+		})
+	</script>
+
+</html>

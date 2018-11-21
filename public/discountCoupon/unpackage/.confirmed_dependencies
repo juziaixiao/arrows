@@ -1,0 +1,129 @@
+{
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"detail.html",
+			"winner.html",
+			"home.html",
+			"draw.html",
+			"choujiangxinxi.html"
+		],
+		"refer": [
+			"detail.html",
+			"winner.html",
+			"home.html",
+			"draw.html",
+			"choujiangxinxi.html"
+		]
+	},
+	"detail.html": {
+		"resources": [
+			"js/font.js",
+			"css/common.css",
+			"images/mycard_img1.png",
+			"images/title_bdfl.png",
+			"js/jquery.js",
+			"cctv/videoplayback.mp4",
+			"cctv/【王境泽面筋哥】ThePhoenix_哔哩哔哩(゜-゜)つロ干杯~-bilibili_x264.mp4",
+			"cctv/IU-Palette(Feat.G-DRAGON).mp4",
+			"cctv/nodejs聊天.avi",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.min.js",
+			"images/cbd.jpg",
+			"images/muwu.jpg",
+			"images/yuantiao.jpg",
+			"images/shuijiao.jpg",
+			"home.html"
+		],
+		"refer": [
+			"home.html"
+		]
+	},
+	"winner.html": {
+		"resources": [
+			"images/winner_title.png",
+			"images/winner_bg.png",
+			"js/font.js",
+			"js/vue.js",
+			"css/common.css",
+			"js/jquery.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"home.html": {
+		"resources": [
+			"js/font.js",
+			"images/cbd.jpg",
+			"images/muwu.jpg",
+			"fonts/mui.ttf",
+			"images/shuijiao.jpg",
+			"images/title_rdtj.png",
+			"js/vue.js",
+			"images/yuantiao.jpg",
+			"images/title_hytj.png",
+			"css/common.css",
+			"images/title_spzq.png",
+			"js/jquery.js",
+			"images/mycard_img2.png",
+			"images/video_icon3.png",
+			"images/test2.png",
+			"images/video_icon4.png",
+			"images/video_icon1.png",
+			"images/test1.png",
+			"images/video_icon2.png",
+			"images/bofang.png",
+			"detail.html",
+			"index.html",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/swiper-3.4.2.min.css",
+			"js/swiper-3.4.2.min.js",
+			"images/gengxin.png",
+			"cctv/IU-Palette(Feat.G-DRAGON).mp4"
+		],
+		"refer": [
+			"detail.html",
+			"index.html"
+		]
+	},
+	"draw.html": {
+		"resources": [
+			"js/font.js",
+			"js/vue.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"images/winner_bg.png",
+			"js/jquery.js",
+			"css/mui.min.css",
+			"choujiangxinxi.html",
+			"js/geolocation.min.js",
+			"images/cj_img1.png",
+			"winner.html"
+		],
+		"refer": [
+			"choujiangxinxi.html",
+			"winner.html"
+		]
+	},
+	"choujiangxinxi.html": {
+		"resources": [
+			"images/winner_bg.png",
+			"index.html",
+			"js/font.js",
+			"js/vue.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery.js",
+			"draw.html"
+		],
+		"refer": [
+			"index.html",
+			"draw.html"
+		]
+	}
+}

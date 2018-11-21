@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<script src="js/jquery.js"></script>
+		<script src="js/font.js"></script>
+		<script type="text/javascript " src="js/vue.js"></script>
+		<link rel="stylesheet" href="css/common.css" />
+		<title>我的关注</title>
+	</head>
+	<style>
+		.containerbox {
+			width: 100%;
+		}
+		
+		.myattention_title {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin: 2rem auto 1rem;
+			text-align: center;
+		}
+	</style>
+	<div class="containerbox" style="padding-top: 2rem;">
+		<div class="p32">
+			<!--for-->
+			<div class="video_itembox display_flex" v-for="(item,index) in shipin_tuijian">
+				<!--<div class="shipin" style="background-image:url(images/yuantiao.jpg);background-size:100% 100%;">
+					<img src="images/bofang.png" class="bofangtupian" />
+				</div>-->
+
+				<!--<div class="shipin" v-if="item.banner.url!=''">
+					<video src="{{item.banner.url}}"></video>
+				</div>-->
+				<div class="shipin" style="height:8rem;">
+					<img v-bind:src="'https://wechat.ltkn7n.cn'+item.banner.img1" style="height:100%;" />
+				</div>
+
+				<div class="video_rightbox" v-on:click="tzDetail(item.ad_id)">
+					<div class="video_text f_24 c_333 two_line">
+						{{item.banner.title}}
+					</div>
+					<div class="display_flex align_items_center home_iconbox">
+						<div class="video_iconbox display_flex align_items_center ">
+							<img src="images/video_icon1.png" class="video_iconimg" />
+							<div class="video_icontext1">关注量</div>
+							<div class="video_icontext2">{{item.banner.browse_num}}</div>
+						</div>
+						<div class="video_iconbox display_flex align_items_center">
+							<img src="images/video_icon2.png" class="video_iconimg" />
+							<div class="video_icontext1">浏览量</div>
+							<div class="video_icontext2">{{item.banner.count}}</div>
+						</div>
+					</div>
+					<div class="display_flex align_items_center home_iconbox" style="margin-top:1.2rem;">
+						<div class="video_iconbox display_flex align_items_center ">
+							<img src="images/video_icon3.png" class="video_iconimg" />
+							<a class="video_icontext1" v-bind:href="'tel:'+item.banner.phone">一键拨号</a>
+
+						</div>
+						<!--<div class="video_iconbox display_flex align_items_center">
+							<img src="images/video_icon4.png" class="video_iconimg" />
+							<div class="video_icontext1">一键导航</div>
+						</div>-->
+					</div>
+				</div>
+			</div>
+
+			<!--<div class="huanyihuans">
+				<span>点击加载更多</span>
+				<img src="images/gengxin.png" />
+			</div>-->
+		</div>
+		<img src="images/wuxinxi.png" v-if="shipin_tuijian.length<1"/>
+	<div style="font-size: 1.5rem;color: #777777;display: flex;justify-content: center;" v-if="shipin_tuijian.length<1">
+		暂未关注任何商家，快去关注吧
+	</div>
+	</div>
+	
+	<script type="text/javascript" charset="utf-8">
+		window.onload = function() {
+			var cm = new Vue({
+				el: '.containerbox',
+				data: {
+					shipin_tuijian: [],
+				},
+				created: function() {
+					var that=this
+					this.login();
+					
+						
+					
+				},
+				methods: {
+					login: function() {
+						var that=this
+						var nonstr = localStorage.getItem("nonstr");
+						if(nonstr) {
+								that.getlist(nonstr);
+						} else {
+							$.ajax({
+								type: "POST",
+								url: "https://wechat.ltkn7n.cn/api/user/newUser",
+								data: {},
+								dataType: "json",
+								async: true,
+								hearder: {},
+								success: function(res) {
+									console.log(res)
+									localStorage.setItem("nonstr", res);
+									that.getlist(res);
+								}
+							});
+							
+						}
+
+					},
+					getlist: function(nonstr) {
+						var that = this;
+						$.ajax({
+							type: "POST",
+							url: "https://wechat.ltkn7n.cn/api/Userfollow/usercoupons",
+							data: {
+								user_id:nonstr
+							},
+							dataType: "json",
+							async: true,
+							hearder: {},
+							success: function(res) {
+								console.log(res);
+								that.shipin_tuijian = res;
+							}
+						});
+					},
+					tzDetail: function(e) {
+						window.location.href = "detail.html?id=" + e;
+					},
+				}
+			})
+		}
+	</script>
+
+</html>

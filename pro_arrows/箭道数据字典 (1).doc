@@ -1,0 +1,1491 @@
+
+        <html xmlns:v="urn:schemas-microsoft-com:vml"
+        xmlns:o="urn:schemas-microsoft-com:office:office"
+        xmlns:w="urn:schemas-microsoft-com:office:word"
+        xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta http-equiv=Content-Type content="text/html;  
+        charset=utf-8">
+        <style type="text/css">
+            table  
+            {  
+                border-collapse: collapse;
+                border: none;  
+                width: 100%;  
+            }  
+            td  
+            {  
+                border: solid #CCC 1px;  
+            }  
+            .codestyle{
+                word-break: break-all;
+                background:silver;mso-highlight:silver;
+            }
+        </style>
+        <meta name=ProgId content=Word.Document>
+        <meta name=Generator content="Microsoft Word 11">
+        <meta name=Originator content="Microsoft Word 11">
+        <xml><w:WordDocument><w:View>Print</w:View></xml></head>
+        <body><h1>1、默认页面</h1><div style="margin-left:20px;"><ul>
+<li>用户表，储存用户信息</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">username</td>
+<td style="text-align: left;">varchar(20)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">varchar(50)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">varchar(15)</td>
+<td style="text-align: left;">是</td>
+<td></td>
+<td>昵称</td>
+</tr>
+<tr>
+<td style="text-align: left;">reg_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td>0</td>
+<td>注册时间</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>备注：无</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h1>2、箭道</h1><div style="margin-left:20px;"><ul>
+<li>ap_image 图片表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">image</td>
+<td style="text-align: left;">varchar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>图片</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>图片类型（1商品详情轮播，2商品详情图片，3箭馆介绍顶部轮播，4箭馆介绍底部轮播）</td>
+</tr>
+<tr>
+<td style="text-align: left;">from</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td>1</td>
+<td>图片来源（1本地，2外网）</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_rice 箭道排行米数分类表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">varchar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">rice</td>
+<td style="text-align: left;">varchar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>米数值</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_activity 活动表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">rid</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>米数分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">varchar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>活动标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">start_time</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>活动开始时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">desc</td>
+<td style="text-align: left;">varchar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>活动简介</td>
+</tr>
+<tr>
+<td style="text-align: left;">theme</td>
+<td style="text-align: left;">varchar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>活动主题</td>
+</tr>
+<tr>
+<td style="text-align: left;">backdrop</td>
+<td style="text-align: left;">varchar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>活动背景</td>
+</tr>
+<tr>
+<td style="text-align: left;">purpose</td>
+<td style="text-align: left;">varchar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>活动目的</td>
+</tr>
+<tr>
+<td style="text-align: left;">detail</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>活动详情</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_activity_people 活动报名表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">varchar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>姓名</td>
+</tr>
+<tr>
+<td style="text-align: left;">phone</td>
+<td style="text-align: left;">varchar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>电话</td>
+</tr>
+<tr>
+<td style="text-align: left;">email</td>
+<td style="text-align: left;">varchar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>邮件</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_activity_score 活动成绩表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">basics</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>基础箭数</td>
+</tr>
+<tr>
+<td style="text-align: left;">hit</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>命中箭数</td>
+</tr>
+<tr>
+<td style="text-align: left;">ring</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>总环数</td>
+</tr>
+<tr>
+<td style="text-align: left;">consum_time</td>
+<td style="text-align: left;">varchar(50)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>耗时</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_goods_classify 商品分类表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品分类名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_goods_attribute 商品属性表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">gid</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>属性</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_goods 商品表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">cid</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">price</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">stock</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品库存</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_goods_cart 商品购物车表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">gid</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">price</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>商品价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_desc 箭馆介绍表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">detail</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>介绍</td>
+</tr>
+<tr>
+<td style="text-align: left;">notice</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>公告</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_user 用户表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">openid</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>openid</td>
+</tr>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>编码</td>
+</tr>
+<tr>
+<td style="text-align: left;">username</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>头像</td>
+</tr>
+<tr>
+<td style="text-align: left;">level</td>
+<td style="text-align: left;">int(5)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>等级</td>
+</tr>
+<tr>
+<td style="text-align: left;">arrow_number</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>我的箭数</td>
+</tr>
+<tr>
+<td style="text-align: left;">integral</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>我的积分</td>
+</tr>
+<tr>
+<td style="text-align: left;">detail</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>我的介绍</td>
+</tr>
+<tr>
+<td style="text-align: left;">vip_endtime</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>会员结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_user_footprint 用户足迹表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">project</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>足迹名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">vip</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>会员</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>称号</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_pk_log pk记录表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">fraction</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>分数</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_level 等级表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">level</td>
+<td style="text-align: left;">int(5)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>等级</td>
+</tr>
+<tr>
+<td style="text-align: left;">lower_limit</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>下限分数</td>
+</tr>
+<tr>
+<td style="text-align: left;">upper_limit</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>上限分数</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_integral 积分分配表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">integral_num</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>积分数</td>
+</tr>
+<tr>
+<td style="text-align: left;">lower_limit</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>下限分数</td>
+</tr>
+<tr>
+<td style="text-align: left;">upper_limit</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>上限分数</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_user_vp 用户视频图片表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">url</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>视频</td>
+</tr>
+<tr>
+<td style="text-align: left;">from</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td>1</td>
+<td>图片来源（1本地，2外网）</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>类型（1视频，2图片）</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_bbs 论坛表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">image</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>图片</td>
+</tr>
+<tr>
+<td style="text-align: left;">from</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td>1</td>
+<td>图片来源（1本地，2外网）</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_bbs_comment 论坛评论表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">desc</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>评论内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_user_edit 用户表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">username</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>头像</td>
+</tr>
+<tr>
+<td style="text-align: left;">detail</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>我的介绍</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改状态（1未修改，2已修改，3已拒绝）</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>ap_user_vp 用户视频图片表</li>
+</ul>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">字段</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">空</th>
+<th>默认</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">user_id</td>
+<td style="text-align: left;">int(10)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>自增id</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">varvhar(100)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">url</td>
+<td style="text-align: left;">varvhar(255)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>视频</td>
+</tr>
+<tr>
+<td style="text-align: left;">from</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td>1</td>
+<td>图片来源（1本地，2外网）</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>类型（1视频，2图片）</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">tinyint(1)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改状态（1未修改，2已修改，3已拒绝）</td>
+</tr>
+<tr>
+<td style="text-align: left;">create_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">update_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">delete_time</td>
+<td style="text-align: left;">int(11)</td>
+<td style="text-align: left;">否</td>
+<td></td>
+<td>删除时间</td>
+</tr>
+</tbody>
+</table></div></body></html>

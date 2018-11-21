@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<script src="js/jquery.js"></script>
+		<script src="js/font.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<title>中奖列表</title>
+
+	</head>
+	<style>
+		.containerbox {
+			width: 100%;
+			background-color: #fdeec8;
+			min-height: 100vh;
+			overflow-x: hidden;
+			background-image: url('images/cj_img1.png');
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+		}
+		
+		.winner_bg {
+			width: 100%;
+			height: 23.5rem;
+		}
+		
+		.kaishi {
+			width: 82%;
+			height: 4rem;
+			border-radius: 2rem;
+			background-color: rgb(254, 200, 66);
+			font-size: 1.6rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: 9%;
+			margin-top: 26rem;
+			color: #fff;
+			font-weight: bold;
+		}
+		
+		.guizhe {
+			width: 100%;
+			padding: 1rem 0rem;
+			display: flex;
+			justify-content: center;
+		}
+		
+		table {
+			width: 82%;
+			margin-left: 9%;
+			margin-bottom: 2rem;
+			color: #fff;
+			border: 1px solid #fff;
+			margin-top: 20px;
+		}
+		
+		td {
+			width: 33.333%;
+			padding: 0.5rem 0rem;
+			text-align: center;
+			font-size: 1.4rem;
+		}
+		
+		th {
+			font-size: 1.5rem;
+		}
+	</style>
+
+	<body>
+		<div class="containerbox">
+
+			<div class="kaishi" onClick="geolocation.getLocation(showPosition, options)"v-if="btnstate==4" >试试您的手气吧</div>
+			<div class="kaishi" v-on:click="tx_winner()" v-if="btnstate==1">您已领取奖品，点击查看</div>
+			<div class="kaishi" v-on:click="tx_winner()" v-if="btnstate==2">您未中奖</div>
+			<div class="kaishi" v-if="btnstate==3" v-on:click="tx_xinxi()">
+				您已中奖，请填填写个人信息，领取奖励
+			</div>
+
+			<table border="" cellspacing="" cellpadding="">
+				<tr>
+					<th>奖品名称</th>
+					<th>奖品介绍</th>
+					<th>奖品价格</th>
+				</tr>
+				<tr>
+					<td>{{sz.price}}</td>
+					<td>{{sz.desc}}</td>
+					<td>{{sz.price}}</td>
+				</tr>
+			</table>
+			
+			<div class="tanchukuang" style="display: none;">
+				<div class="tck_box">
+					<div class="tck_box_a">
+						<div>
+							<!--恭喜您中獎-->
+							{{textone}}
+						</div>
+						<div>
+							<!--您獲得電視一台-->
+							{{texttwo}}
+						</div>
+						<div>
+							<!--快去填写信息领取奖励吧-->
+							{{textthree}}
+						</div>
+					</div>
+					<div class="tck_box_b">
+						<div v-on:click="taps()">
+							取消
+						</div>
+						<div v-on:click="queding()">
+							{{textfour}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/geolocation.min.js"></script>
+<script type="text/javascript">
+	var vm = null
+	var geolocation = new qq.maps.Geolocation("3XGBZ-6QRKF-VONJY-JQ4XI-XFWQ3-UHBTH", "myapp");
+	var options = {
+		timeout: 8000
+	};
+	function showPosition(position) {
+		var dl_wz = JSON.stringify(position, null, 4)
+		console.log(dl_wz)
+		vm.tap(position.lat, position.lng);
+	};
+
+	var vm = new Vue({
+		el: ".containerbox",
+		data: {
+			sz: [],
+			textone: '11',
+			texttwo: '222',
+			textthree: '3333',
+			textfour: '确定',
+			urlstate: '',
+			btnstate: 4,
+			fenxiangs:"2"
+		},
+		created: function() {
+			//			this.taps()
+			this.getpricelist();
+			this.getstate();
+			this.login();
+			this.fenxiang();
+		},
+		methods: {
+			fenxiang:function(){
+				var that=this
+				$.ajax({
+			type: "POST",
+			url: "https://wechat.ltkn7n.cn/api/token/getJapisignature",
+			data: {},
+			dataType: "json",
+			async: true,
+			hearder: {},
+			success: function(res) {
+				console.log(res)
+				wx.config({
+					debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+					appId: 'wxa3d90b450ebb5dfd', // 必填，公众号的唯一标识
+					timestamp: res.timestamp, // 必填，生成签名的时间戳
+					nonceStr: res.nonce_str, // 必填，生成签名的随机串
+					signature: res.signature, // 必填，签名
+					jsApiList: ["onMenuShareAppMessage"] // 必填，需要使用的JS接口列表
+				});
+				wx.ready(function(){
+					wx.checkJsApi({
+						jsApiList: ["onMenuShareAppMessage"], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+						success: function(res) {
+							console.log(res)
+							// 以键值对的形式返回，可用的api值true，不可用为false
+							// 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+						}
+					});
+				})
+				
+				wx.error(function(res) {
+					console.log(res)
+					// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+				});
+				wx.ready(function(){
+					wx.onMenuShareAppMessage({
+						title: '锦州商圈，豪礼放送', // 分享标题
+						desc: '吃的喝的玩的用的应有尽有,尽在锦州商圈', // 分享描述
+						link: 'http://wechat.ltkn7n.cn/discountCoupon/draw.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						imgUrl: 'https://wechat.ltkn7n.cn/discountCoupon/images/winner_bg.png', // 分享图标
+						type: 'http://wechat.ltkn7n.cn/discountCoupon/draw.html', // 分享类型,music、video或link，不填默认为link
+						dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+						success: function(res) {
+							console.log(res);
+							localStorage.setItem("status", 1);
+							// 用户点击了分享后执行的回调函数
+						},
+						fail:function(res){
+							alert("分享失败")
+						},
+						complete:function(res){
+						}
+						
+						});
+					});
+					
+					
+					}
+				});
+
+			},
+			login: function() {
+				var that = this
+				var nonstr = localStorage.getItem("nonstr");
+				if(nonstr) {
+				
+				} else {
+					$.ajax({
+						type: "POST",
+						url: "https://wechat.ltkn7n.cn/api/user/newUser",
+						data: {},
+						dataType: "json",
+						async: true,
+						hearder: {},
+						success: function(res) {
+							console.log(res)
+							localStorage.setItem("nonstr", res);
+						}
+					});
+
+				}
+
+			},
+			//点击按钮抽奖
+			tap: function(lat, lgt) {
+				var that = this
+				console.log(that.sz.price)
+				console.log(lat)
+				console.log(lgt)
+				var nonstr = localStorage.getItem("nonstr");
+				var status=localStorage.getItem("status");
+				if(status==1){
+
+					$.ajax({
+					type: "POST",
+					url: "https://wechat.ltkn7n.cn/api/Draw/dodraw",
+					data: {
+						price: that.sz.price,
+						lat: lat,
+						lgt: lgt,
+						user_id: nonstr
+					},
+					dataType: "json",
+					async: true,
+					hearder: {
+						"token": 1
+					},
+					success: function(res) {
+						console.log(res);
+						//已中奖
+
+						if(res == 1) {
+							
+							$(".tanchukuang").show(300);
+							that.textone = '恭喜您中奖';
+							that.texttwo = '快去填写信息领取奖励吧';
+							that.textthree = '';
+							that.textfour = '点击查看';
+							that.urlstate = 1;
+							that.getstate();
+							localStorage.setItem("status", 2);
+						}
+						//未中奖
+						else if(res == 2) {
+							
+							$(".tanchukuang").show(300);
+							that.textone = '您未中奖';
+							that.texttwo = '';
+							that.textthree = '';
+							that.textfour = '点击查看';
+							that.urlstate = 2;
+							that.getstate();
+						}
+						//活动过期
+						else if(res == 3) {
+							
+							$(".tanchukuang").show(300);
+							that.textone = '活动已过期';
+							that.texttwo = '';
+							that.textthree = '';
+							that.textfour = '确定';
+							that.urlstate = 0;
+							that.getstate();
+						} //活动过期
+
+						//地理位置获取失败
+						else if(res == 4) {
+							
+							$(".tanchukuang").show(300);
+							that.textone = '地理位置获取失败';
+							that.texttwo = '';
+							that.textthree = '';
+							that.textfour = '确定';
+							that.urlstate = 0;
+							that.getstate();
+						}
+
+					},
+					fail:function(res){
+
+					}
+				});
+				}else{
+					alert('请先分享给您的好友，进行抽奖');
+				}
+				
+
+				
+
+			},
+			taps: function() {
+				$(".tanchukuang").hide(300)
+			},
+			queding: function() {
+				var that = this;
+				if(that.urlstate == 0) {
+					$(".tanchukuang").hide(300)
+				}
+				if(that.urlstate == 1) {
+					window.location.href = "choujiangxinxi.html";
+				}
+				if(that.urlstate == 2) {
+					window.location.href = "winner.html";
+				}
+				
+			},
+			tx_winner: function() {
+				window.location.href = "winner.html";
+			},
+			tx_xinxi: function() {
+				window.location.href = "choujiangxinxi.html";
+
+			},
+			getpricelist: function() {
+				var that = this;
+				$.ajax({
+					type: "POST",
+					url: "https://wechat.ltkn7n.cn/api/Draw/draw",
+					data: {},
+					dataType: "json",
+					async: true,
+					hearder: {
+						"token": 1
+					},
+					success: function(res) {
+						
+						that.sz = res;
+					}
+				});
+			},
+			/**
+			 * 判断是否中奖
+			 */
+			getstate: function() {
+				var that = this;
+				var nonstr = localStorage.getItem("nonstr");
+				console.log('state')
+				$.ajax({
+					type: "POST",
+					url: "https://wechat.ltkn7n.cn/api/Draw/drawstate",
+					data: {
+						user_id: nonstr
+					},
+					dataType: "json",
+					async: true,
+					hearder: {},
+					success: function(res) {
+						console.log(res);
+						//已中奖且已填写完整信息
+						if(res == 1) {
+							that.btnstate = 1;
+							alert("您已领取奖励");
+							window.location.href = "winner.html";
+						}
+						//未中奖，跳转中奖信息浏览页
+						else if(res == 2) {
+							that.btnstate = 2;
+							//							that.texttwo='';
+							//							$(".tanchukuang").show(300);
+							//							that.textone='您未中奖';
+							//							that.textthree='';
+							//							that.urlstate=2;
+							//							window.location.href = "winner.html";
+						}
+						//已中奖但未填写信息
+						else if(res == 3) {
+							that.btnstate = 3;
+						}
+						//用户未进行抽奖
+						else if(res == 4) {
+							that.btnstate = 4;
+						}
+					},
+					fail: function(res) {
+						console.log(res);
+					}
+				});
+			}
+
+		}
+	});
+</script>
